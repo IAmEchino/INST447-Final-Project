@@ -1,25 +1,30 @@
-# Read in the data
+library(ggplot2)
+
+# Read the data
 merged_data <- read.csv("merged.csv")
 
-# 1. Determine the maximum Airbnb count in your data
-max_count <- max(merged_data$airbnb_count)
+# Create the histogram plot object
+histogram_plot <- ggplot(merged_data, aes(x = airbnb_count)) +
+  # Set the bin width to 100
+  geom_histogram(
+    binwidth = 100,
+    fill = "lightblue",
+    color = "black"
+  ) +
+  # Set titles and labels
+  labs(
+    title = "Distribution of Airbnb Density Across ZIP Codes",
+    x = "Airbnb Count (Listings per ZIP Code)",
+    y = "Number of ZIP Codes"
+  ) +
+  # Use a clean theme
+  theme_minimal()
 
-# 2. Create a sequence for the breaks
-# This sequence starts at 0, goes up to the next multiple of 100
-# that is greater than or equal to the max_count, in steps of 100.
-custom_breaks <- seq(
-    from = 0,
-    to = ceiling(max_count / 100) * 100,
-    by = 100
-)
-
-# 3. Pass the custom_breaks sequence to the 'breaks' argument
-hist(
-  merged_data$airbnb_count,
-  main = "Distribution of Airbnb Density Across ZIP Codes",
-  xlab = "Airbnb Count (Listings per ZIP Code)",
-  ylab = "Number of ZIP Codes",
-  col = "lightblue",
-  border = "black",
-  breaks = custom_breaks # This line specifies the bin boundaries
+# Save the plot as a PNG file
+ggsave(
+  filename = "Question 3 Histogram.png",
+  plot = histogram_plot,
+  width = 8,
+  height = 6,
+  units = "in"
 )
