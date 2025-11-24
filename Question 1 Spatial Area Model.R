@@ -55,9 +55,9 @@ spatial_plot <- ggplot(merged_sf) +
   # Use geom_sf for mapping the spatial points
   geom_sf(aes(size = abs(sem_residuals), color = sem_residuals)) +
   scale_color_gradient2(
-    low = "yellow",       # Over-predicted (negative residual)
-    mid = "blue",
-    high = "red",     # Under-predicted (positive residual)
+    low = "#0000FF",       # Over-predicted (negative residual)
+    mid = "grey80",
+    high = "#FF0000",     # Under-predicted (positive residual)
     midpoint = 0,
     name = "Residuals (USD)"
   ) +
