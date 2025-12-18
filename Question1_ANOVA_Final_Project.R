@@ -84,5 +84,3 @@ log_aov <- merged %>%
   anova_test(log_price ~ airbnb_tertile)
 
 get_anova_table(log_aov)
-
-## Test 2: Linear Regression 
